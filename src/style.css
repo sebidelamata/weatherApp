@@ -44,6 +44,10 @@
     --clr-19: rgb(4, 3, 29);
     --clr-20: rgb(20, 1, 13);
     --clr-21: rgb(55, 54, 54);
+    --clr-22: rgb(211, 206, 206);
+    --clr-23: rgba(211, 206, 206, 0.06);
+    color: var(--clr-22);
+    max-width: 100vw;
 }
 
 body{
@@ -186,4 +190,117 @@ body{
 }
 .night-cloudy::after{
     filter: blur(1.5rem);
+}
+
+#weather-div{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+#city-form{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+#city-input{
+    display: grid;
+    color: var(--clr-22);
+    position: relative;
+    background-color: transparent;
+    z-index: 9999;
+    font-size: xx-large;
+    text-align: center;
+    font-weight: bolder;
+    border-radius: 1vw;
+    border-color: var(--clr-22);
+    border-style: solid;
+    border-width: 0.5px;
+}
+#city-input:focus{
+    border-width: 1px;
+    outline-color: var(--clr-22);
+    outline-style: inset;
+}
+
+#location-data{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+    z-index: 9999;
+    font-weight: bold;
+}
+
+#location-coords{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    font-size:small;
+    font-style: italic;
+    font-weight: lighter;
+}
+
+#general-condition{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    color: var(--clr-22);
+    z-index: 9999;
+    font-weight: bolder;
+    font-size: larger;
+}
+
+#temp-div{
+    z-index: 99999;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+    gap: 2.5vw;
+}
+
+#temp{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    color: var(--clr-22);
+    font-size: 10vh;
+}
+
+#temp-mode-change{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    font-size: 6vh;
+    transition: 0.5s;
+    padding: min(1vw);
+    margin: min(1vw);
+    border-radius: 2vw;
+}
+
+
+#temp-mode-change:hover{
+    background-color: var(--clr-23);
+}
+
+#feels-like{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    font-size: 2vh;
+    color: var(--clr-22);
+    z-index: 9999;
+}
+
+#last-update{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5vh;
+    font-weight: light;
+    font-style: italic;
+    color: var(--clr-22);
+    z-index: 999;
 }
