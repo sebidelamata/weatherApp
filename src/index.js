@@ -2,24 +2,37 @@ import "./style.css";
 import { queryWeather } from "./queryWeather";
 import { doc } from "prettier";
 
-function removeAllChildNodes(parent) {
-    while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
+function removeAllChildNodesExceptFirst(parent) {
+    while (parent.childNodes.length > 1) {
+        parent.removeChild(parent.lastChild);
     }
 }
 
 let query = await queryWeather('new york');
-console.log(query)
 let tempScaleF = true;
 
 let body = document.querySelector('body');
 let weatherDiv = document.createElement('div');
 body.appendChild(weatherDiv);
 weatherDiv.id = 'weather-div';
+let cityForm = document.createElement('form');
+cityForm.id = 'city-form';
+weatherDiv.appendChild(cityForm);
+let cityInput = document.createElement('input');
+cityInput.setAttribute('name', 'city');
+cityInput.setAttribute('required', 'required');
+cityInput.type = 'text';
+cityInput.id = 'city-input';
+cityInput.autofocus = true;
+cityInput.value = query.location.name;
+cityForm.appendChild(cityInput);
 
 async function updateInputs() {
 
-    removeAllChildNodes(weatherDiv);
+    // cleat board
+    removeAllChildNodesExceptFirst(weatherDiv);
+    
+    let query = await queryWeather(cityInput.value);
 
     let isDay = query.current.is_day;
 
@@ -126,14 +139,7 @@ async function updateInputs() {
         weatherDiv.className = 'night-cloudy';
     }
 
-    let cityForm = document.createElement('form');
-    cityForm.id = 'city-form';
-    weatherDiv.appendChild(cityForm);
-    let cityInput = document.createElement('input');
-    cityInput.id = 'city-input';
-    cityInput.autofocus = true;
-    cityInput.value = query.location.name;
-    cityForm.appendChild(cityInput);
+   
     let locationData = document.createElement('div');
     locationData.id = 'location-data';
     weatherDiv.appendChild(locationData);
@@ -217,6 +223,16 @@ async function updateInputs() {
     }
     // listen for units of measure change
     tempModeChange.addEventListener('click', changeUnitOfMeasurement)
+
+    const updateCity = (event) => {
+        if(event.keyCode === 13){
+            event.preventDefault();    
+            updateInputs();
+        }
+        
+    };
+
+    cityInput.addEventListener('keydown', updateCity);
 
 }
 
