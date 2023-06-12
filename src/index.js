@@ -5,10 +5,7 @@ import { doc } from "prettier";
 let query = await queryWeather('new york');
 console.log(query)
 let isDay = query.current.is_day;
-console.log(isDay)
-
-
-
+let tempScaleF = true;
 let body = document.querySelector('body');
 let weatherDiv = document.createElement('div');
 body.appendChild(weatherDiv);
@@ -157,6 +154,39 @@ generalCondition.textContent = query.current.condition.text;
 weatherDiv.appendChild(generalCondition);
 let minorStats = document.createElement('div');
 minorStats.id = 'minor-stats';
+weatherDiv.appendChild(minorStats);
+let humidity = document.createElement('div');
+humidity.id = 'humidity';
+minorStats.appendChild(humidity);
+humidity.textContent = `Humidity: ${query.current.humidity}%`;
+let gustSpeed = document.createElement('div');
+gustSpeed.id = 'gust-speed';
+gustSpeed.textContent = `Gust Speed: ${query.current.gust_mph} mi/h`;
+minorStats.appendChild(gustSpeed);
+let precipDepth = document.createElement('div');
+precipDepth.id = 'precip-depth';
+precipDepth.textContent = `Precipitation: ${query.current.precip_in} inches`;
+minorStats.appendChild(precipDepth);
+let airPressure = document.createElement('div');
+airPressure.id = 'air-pressure';
+airPressure.textContent = `Air Pressure: ${query.current.pressure_in} inches of mercury`;
+minorStats.appendChild(airPressure);
+let uv = document.createElement('div');
+uv.id = 'uv';
+uv.textContent = `UV Index: ${query.current.uv}`;
+minorStats.appendChild(uv);
+let viz = document.createElement('div');
+viz.id = 'viz';
+viz.textContent = `Visibility: ${query.current.vis_miles} miles`;
+minorStats.appendChild(viz);
+let windDirection = document.createElement('div');
+windDirection.id = 'wind-direction';
+windDirection.textContent = `Wind Direction: ${query.current.wind_dir}, ${query.current.wind_degree}°`;
+minorStats.appendChild(windDirection);
+let windSpeed = document.createElement('div');
+windSpeed.id = 'wind-speed';
+windSpeed.textContent = `Wind Speed: ${query.current.wind_mph} mi/h`;
+minorStats.appendChild(windSpeed);
 let lastUpdate = document.createElement('div');
 lastUpdate.id = 'last-update';
 lastUpdate.textContent = `Last updated ${query.current.last_updated}`;
