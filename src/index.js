@@ -2,11 +2,6 @@ import "./style.css";
 import { queryWeather } from "./queryWeather";
 import { doc } from "prettier";
 
-function removeAllChildNodesExceptFirst(parent) {
-    while (parent.childNodes.length > 1) {
-        parent.removeChild(parent.lastChild);
-    }
-}
 
 let query = await queryWeather('new york');
 let tempScaleF = true;
@@ -29,12 +24,36 @@ cityForm.appendChild(cityInput);
 
 async function updateInputs() {
 
-    // cleat board
-    removeAllChildNodesExceptFirst(weatherDiv);
+    // clean board
+    let locationTemp = document.getElementById('location-data');
+    if(locationTemp){
+        locationTemp.remove();
+    }
+    let tempTemp = document.getElementById('temp-div');
+    if(tempTemp){
+        tempTemp.remove();
+    }
+    let feelsTemp = document.getElementById('feels-like');
+    if(feelsTemp){
+        feelsTemp.remove();
+    }
+    let generalTemp = document.getElementById('general-condition');
+    if(generalTemp){
+        generalTemp.remove();
+    }
+    let minorTemp = document.getElementById('minor-stats');
+    if(minorTemp){
+        minorTemp.remove();
+    }
+    let lastTemp = document.getElementById('last-update');
+    if(lastTemp){
+        lastTemp.remove();
+    }
     
     let query = await queryWeather(cityInput.value);
 
     let isDay = query.current.is_day;
+    let weatherDiv = document.getElementById('weather-div')
 
     // set background
     if(isDay === 1 && query.current.condition.code === 1000){
@@ -226,7 +245,10 @@ async function updateInputs() {
 
     const updateCity = (event) => {
         if(event.keyCode === 13){
-            event.preventDefault();    
+            event.preventDefault();  
+            // remove event listeners to prevent creating multiples
+            cityInput.removeEventListener('keydown', updateCity);
+            tempModeChange.removeEventListener('click', changeUnitOfMeasurement);
             updateInputs();
         }
         
