@@ -4,7 +4,9 @@ const Dotenv = require("dotenv-webpack");
 
 module.exports = {
   mode: "development",
-  entry: "./src/index.js",
+  entry: {
+    index: './src/index.js',
+  },
   devtool: "inline-source-map",
   devServer: {
     static: "./dist",
@@ -21,7 +23,6 @@ module.exports = {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
     clean: true,
-    publicPath: "/",
   },
   optimization: {
     runtimeChunk: "single",

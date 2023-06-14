@@ -2,7 +2,7 @@
   "name": "weatherapp",
   "version": "1.0.0",
   "repository": {
-    "url": "git+https://github.com/sebidelamata/weatherApp.git"
+    "url": "git+https://github.com/sebidelamata/weatherApp"
   },
   "description": "",
   "private": true,
