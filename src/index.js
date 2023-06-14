@@ -256,6 +256,12 @@ async function updateInputs() {
 
     cityInput.addEventListener('keydown', updateCity);
 
+    if(weatherDiv.classList.contains('sunny')){
+        cityInput.style.color = 'var(--clr-1)';
+    } else {
+        cityInput.style.color = 'var(--clr-22)';
+    }
+
 }
 
 updateInputs();
