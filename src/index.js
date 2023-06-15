@@ -264,9 +264,13 @@ async function updateInputs() {
   const changeUnitOfMeasurement = () => {
     if (tempScaleF === true) {
       tempScaleF = false;
+      cityInput.removeEventListener("keydown", updateCity);
+      tempModeChange.removeEventListener("click", changeUnitOfMeasurement);
       updateInputs();
     } else {
       tempScaleF = true;
+      cityInput.removeEventListener("keydown", updateCity);
+      tempModeChange.removeEventListener("click", changeUnitOfMeasurement);
       updateInputs();
     }
   };
