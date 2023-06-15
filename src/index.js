@@ -20,6 +20,10 @@ cityInput.id = "city-input";
 cityInput.autofocus = true;
 cityInput.value = query.location.name;
 cityForm.appendChild(cityInput);
+cityInput.addEventListener('touchstart', () => {});
+cityInput.addEventListener('touchend', () => {});
+cityInput.addEventListener('touchcancel', () => {});
+cityInput.addEventListener('touchmove', () => {});
 
 async function updateInputs() {
   // clean board
